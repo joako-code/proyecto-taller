@@ -1,4 +1,21 @@
-# proyecto-algoritmo
+# 💸 Billetera Virtual
 
-## billetera virtual 
+Una aplicación de billetera virtual con casino integrado
 
+## 🚀 Funcionalidades
+
+- ?
+- ?
+- ?
+- ...
+
+## 🛠️ Tecnologías utilizadas
+
+- ?
+- ?
+- ?
+- ...
+  
+## 📦 Instalación
+
+- ?
