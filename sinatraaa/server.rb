@@ -21,4 +21,8 @@ class App < Sinatra::Application
   get '/queonda' do
     'Que onda!'
   end
+
+  get '/jefe' do
+    'Sos el mejorr!'
+  end
 end
