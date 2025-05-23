@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_165722) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_23_204856) do
+  create_table "accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "email"
+    t.decimal "balance", default: "0.0"
+    t.string "cvu"
+    t.string "alias"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alias"], name: "index_accounts_on_alias", unique: true
+    t.index ["cvu"], name: "index_accounts_on_cvu", unique: true
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "num_transaction"
+    t.datetime "date"
+    t.string "description"
+    t.decimal "amount"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["num_transaction"], name: "index_transactions_on_num_transaction", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts"
 end
