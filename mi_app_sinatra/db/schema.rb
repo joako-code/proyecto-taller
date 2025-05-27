@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_204856) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_27_210408) do
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.string "email"
@@ -31,11 +31,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_204856) do
     t.datetime "date"
     t.string "description"
     t.decimal "amount"
-    t.integer "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.integer "source_account_id"
+    t.integer "target_account_id"
     t.index ["num_transaction"], name: "index_transactions_on_num_transaction", unique: true
+    t.index ["source_account_id"], name: "index_transactions_on_source_account_id"
+    t.index ["target_account_id"], name: "index_transactions_on_target_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,5 +47,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_204856) do
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "transactions", "accounts"
 end
