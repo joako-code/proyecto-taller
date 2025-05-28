@@ -1,0 +1,50 @@
+CREATE TABLE User(
+	first_name VARCHAR(20) NOT NULL,
+	last_name VARCHAR(20) NOT NULL,
+	phone VARCHAR(20) NOT NULL,
+	dni VARCHAR (10) PRIMARY KEY NOT NULL,
+	cvu VARCHAR(23) NOT NULL,
+	CONSTRAINT `FKAcount1` (cvu) FOREIGN KEY `Acount` (cvu)
+);
+
+CREATE TABLE Acount(
+	cvu VARCHAR(23) PRIMARY KEY NOT NULL,
+	balance INT NOT NULL,
+	password VARCHAR(30) NOT NULL,
+);
+
+CREATE TABLE Transactions(
+	num_transaction INT PRIMARY KEY NOT NULL,
+	amount INT NOT NULL,
+	date DATE NOT NULL,
+	description VARCHAR(146),
+	cvu VARCHAR(23) NOT NULL,
+	CONSTRAINT `FKAcount2` (cvu) FOREIGN KEY `Acount` (cvu)
+);
+
+CREATE TABLE Transfer(
+	num_transaction INT PRIMARY KEY NOT NULL,
+	amount INT NOT NULL,
+	date DATE NOT NULL,
+	description VARCHAR(146),
+	cvu VARCHAR(23) NOT NULL,
+	CONSTRAINT `FKAcount` (cvu) FOREIGN KEY `Acount` (cvu),
+	CONSTRAINT `FKTransactions3` (num_transaction) FOREIGN KEY `Transactions` 	(num_transactions)
+);
+
+CREATE TABLE Deposit(
+	num_transaction INT PRIMARY KEY NOT NULL,
+	amount INT NOT NULL,
+	date DATE NOT NULL,
+	description VARCHAR(146),
+	CONSTRAINT `FKTransactions1` (num_transaction) FOREIGN KEY `Transactions` 	(num_transactions)
+);
+
+CREATE TABLE Withdrawl(
+	num_transaction INT PRIMARY KEY NOT NULL,
+	amount INT NOT NULL,
+	date DATE NOT NULL,
+	description VARCHAR(146),
+	CONSTRAINT `FKTransactions2` (num_transaction) FOREIGN KEY `Transactions` 	(num_transactions)
+);
+
