@@ -8,6 +8,8 @@ require_relative 'models/user'
 
 class App < Sinatra::Application
 
+  set :views, File.expand_path('../views', __FILE__) #indico explicitamente a sintara donde estan las vistas
+
   configure :development do
     enable :logging
     logger = Logger.new(STDOUT)
@@ -23,5 +25,20 @@ class App < Sinatra::Application
   get '/' do
     settings.logger.info "Serving the root path"
     'Welcome todo bien?'
+  end
+
+  # Rutas para vistas
+  get '/signup' do
+    erb :signup
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  get '/welcome' do
+    # Simulación de usuario logueado para mostrar la vista
+    @user = User.first
+    erb :welcome
   end
 end
