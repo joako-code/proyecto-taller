@@ -1,2 +1,15 @@
+# Archivos de bases de datos
 db/*.sqlite3
 db/*.sqlite3-*
+db/*.db
+
+# Archivos temporales y logs
+*.log
+*.tmp
+
+# Archivos de entorno
+.env
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
