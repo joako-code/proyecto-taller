@@ -10,16 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_29_135907) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_29_214215) do
   create_table "accounts", primary_key: "cvu", id: :string, force: :cascade do |t|
     t.string "dni", null: false
-    t.string "email", null: false
     t.integer "balance", null: false
-    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dni"], name: "index_accounts_on_dni", unique: true
-    t.index ["email"], name: "index_accounts_on_email", unique: true
   end
 
   create_table "transactions", primary_key: "transaction_id", force: :cascade do |t|
@@ -45,6 +42,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_29_135907) do
     t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "accounts", "users", column: "dni", primary_key: "dni"

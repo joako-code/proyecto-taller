@@ -7,7 +7,5 @@ class Account < ActiveRecord::Base
 
   validates :cvu, presence: true, uniqueness: true #valida que el cvu este presente y sea unico
   validates :dni, presence: true, uniqueness: true #valida que el dni este presente y sea unico
-  validates :email, presence: true, uniqueness: true #valida que el email este presente y sea unico
   validates :balance, presence: true, numericality: { greater_than_or_equal_to: 0 } #valida que el balance este presente y no sea negativo
-  validates :password, presence: true #valida que la contraseña este presente
 end
