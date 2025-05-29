@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CloverWallet</title>
+</head>
+<body>
+  <header>
+    <h1>CloverWallet</h1>
+    <nav>
+      <a href="/signup">Registrarse</a> |
+      <a href="/login">Iniciar sesión</a>
+    </nav>
+    <hr>
+  </header>
+
+  <% if @error %>
+    <p style="color: red;"><%= @error %></p>
+  <% end %>
+
+  <%= yield %>
+</body>
+</html>
