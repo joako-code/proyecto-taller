@@ -10,45 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_27_210408) do
-  create_table "accounts", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "email"
-    t.decimal "balance", default: "0.0"
-    t.string "cvu"
-    t.string "alias"
-    t.string "password"
+ActiveRecord::Schema[8.0].define(version: 2025_05_29_135907) do
+  create_table "accounts", primary_key: "cvu", id: :string, force: :cascade do |t|
+    t.string "dni", null: false
+    t.string "email", null: false
+    t.integer "balance", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["alias"], name: "index_accounts_on_alias", unique: true
-    t.index ["cvu"], name: "index_accounts_on_cvu", unique: true
+    t.index ["dni"], name: "index_accounts_on_dni", unique: true
     t.index ["email"], name: "index_accounts_on_email", unique: true
-    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
-    t.integer "num_transaction"
-    t.datetime "date"
-    t.string "description"
-    t.decimal "amount"
+  create_table "transactions", primary_key: "transaction_id", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.date "date", null: false
+    t.string "description", limit: 146
+    t.string "transaction_type", null: false
+    t.string "account_cvu", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "source_account_id"
-    t.integer "target_account_id"
-    t.index ["num_transaction"], name: "index_transactions_on_num_transaction", unique: true
-    t.index ["source_account_id"], name: "index_transactions_on_source_account_id"
-    t.index ["target_account_id"], name: "index_transactions_on_target_account_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "dni"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
+  create_table "transfers", primary_key: "transaction_id", force: :cascade do |t|
+    t.string "from_cvu", null: false
+    t.string "to_cvu", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dni"], name: "index_users_on_dni", unique: true
   end
 
-  add_foreign_key "accounts", "users"
+  create_table "users", primary_key: "dni", id: :string, force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "accounts", "users", column: "dni", primary_key: "dni"
+  add_foreign_key "transactions", "accounts", column: "account_cvu", primary_key: "cvu"
+  add_foreign_key "transfers", "accounts", column: "from_cvu", primary_key: "cvu"
+  add_foreign_key "transfers", "accounts", column: "to_cvu", primary_key: "cvu"
+  add_foreign_key "transfers", "transactions", primary_key: "transaction_id"
 end
