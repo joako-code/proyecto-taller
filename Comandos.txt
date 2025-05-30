@@ -1,0 +1,51 @@
+# GIT
+Ver estado del repositorio:
+git status
+
+Agregar todos los archivos al commit:
+git add .
+
+Hacer commit de los cambios:
+git commit -m "Mensaje descriptivo"
+
+Traer cambios del repositorio remoto:
+git pull origin main
+
+Subir tus cambios al repositorio remoto:
+git push origin main
+
+# BUNDLER
+Instalar gemas (en la raíz del proyecto):
+bundle install
+
+# RSPEC
+Correr todos los tests:
+bundle exec rspec
+
+Correr un test específico:
+bundle exec rspec spec/models/transaction_spec.rb
+
+# MIGRACIONES (ActiveRecord)
+Crear una nueva migración:
+bundle exec rake db:create_migration NAME=nombre_migracion
+
+Ejecutar migraciones pendientes:
+bundle exec rake db:migrate
+
+Revertir la última migración:
+bundle exec rake db:rollback
+
+# BASE DE DATOS
+Crear la base de datos:
+bundle exec rake db:create
+
+Borrar la base de datos:
+bundle exec rake db:drop
+
+# SINATRA
+Levantar la aplicación:
+bundle exec rackup
+
+Levantar la aplicación en un puerto específico:
+bundle exec rackup -p 4567
+
