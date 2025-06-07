@@ -1,0 +1,20 @@
+<h2>Mi saldo</h2>
+<p><strong>Saldo actual:</strong> $<%= @account.balance %></p>
+
+<h3>Movimientos</h3>
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Fecha</th>
+    <th>Tipo</th>
+    <th>Monto</th>
+    <th>Descripción</th>
+  </tr>
+  <% @transactions.each do |tx| %>
+    <tr>
+      <td><%= tx.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+      <td><%= tx.transaction_type %></td>
+      <td>$<%= tx.amount %></td>
+      <td><%= tx.description %></td>
+    </tr>
+  <% end %>
+</table>

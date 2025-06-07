@@ -7,8 +7,17 @@
   <header>
     <h1>CloverWallet</h1>
     <nav>
-      <a href="/signup">Registrarse</a> |
-      <a href="/login">Iniciar sesión</a>
+      <% if session[:dni] %>
+        <a href="/welcome">Inicio</a> |
+        <a href="/dashboard">Mi saldo</a> |
+        <a href="/deposit">Depositar</a> |
+        <a href="/withdraw">Retirar</a> |
+        <a href="/transfer">Transferir</a> |
+        <a href="/logout">Cerrar sesión</a>
+      <% else %>
+        <a href="/signup">Registrarse</a> |
+        <a href="/login">Iniciar sesión</a>
+      <% end %>
     </nav>
     <hr>
   </header>
@@ -19,4 +28,5 @@
 
   <%= yield %>
 </body>
+
 </html>
