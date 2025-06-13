@@ -8,15 +8,15 @@
     <h1>CloverWallet</h1>
     <nav>
       <% if session[:dni] %>
-        <a href="/welcome">Inicio</a> |
-        <a href="/dashboard">Mi saldo</a> |
-        <a href="/deposit">Depositar</a> |
-        <a href="/withdraw">Retirar</a> |
-        <a href="/transfer">Transferir</a> |
-        <a href="/logout">Cerrar sesión</a>
+        <a href="/welcome">Home</a> |
+        <a href="/dashboard">My Balance</a> |
+        <a href="/deposit">Deposit</a> |
+        <a href="/withdraw">Withdraw</a> |
+        <a href="/transfer">Transfer</a> |
+        <a href="/logout">Close session</a>
       <% else %>
-        <a href="/signup">Registrarse</a> |
-        <a href="/login">Iniciar sesión</a>
+        <a href="/signup">Sign Up</a> |
+        <a href="/login">Sing In</a>
       <% end %>
     </nav>
     <hr>
