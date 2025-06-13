@@ -55,7 +55,9 @@ class App < Sinatra::Application
 
       #primero genero un cvu que no exista
       begin
-        new_cvu = SecureRandom.hex(12)
+        new_cvu = rand(10**22).to_s.rjust(22,'0')
+          #to_s -> pasa el numero random a string
+          #rjust -> completa con ceros a la izquierda si faltan digitos
       end while Account.exists?(cvu:new_cvu)
 
       Account.create!(cvu: new_cvu, dni: user.dni, balance: 0)
