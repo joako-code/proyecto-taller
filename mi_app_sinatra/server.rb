@@ -52,7 +52,13 @@ class App < Sinatra::Application
     )
     if user.save
       # Crea la cuenta asociada automáticamente
-      Account.create!(cvu: SecureRandom.hex(12), dni: user.dni, balance: 0)
+
+      #primero genero un cvu que no exista
+      begin
+        new_cvu = SecureRandom.hex(12)
+      end while Account.exists?(cvu:new_cvu)
+
+      Account.create!(cvu: new_cvu, dni: user.dni, balance: 0)
       session[:dni] = user.dni
       redirect '/welcome'
     else
