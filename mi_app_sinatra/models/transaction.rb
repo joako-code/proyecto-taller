@@ -15,9 +15,13 @@ class Transaction < ActiveRecord::Base
   private
 
   def sufficient_balance
-    if %w[withdrawal transfer].include?(transaction_type)
-      if account.balance < amount
-        errors.add(:base, "Saldo insuficiente para realizar la transacción") #error si el saldo es insuficiente
+    # Solo validar para retiros y transferencias de salida (no para transferencias recibidas)
+    if transaction_type == 'withdrawal'
+      errors.add(:base, "Saldo insuficiente para realizar la transacción") if account.balance < amount
+    elsif transaction_type == 'transfer'
+      # Solo validar si es una transferencia de salida (la descripción contiene "a" o el account_cvu es el origen)
+      if description&.start_with?("Transferencia a") && account.balance < amount
+        errors.add(:base, "Saldo insuficiente para realizar la transacción")
       end
     end
   end
@@ -29,13 +33,11 @@ class Transaction < ActiveRecord::Base
     when 'withdrawal'
       account.decrement!(:balance, amount)
     when 'transfer'
-      account.decrement!(:balance, amount) # Debitar de la cuenta origen
-      if transfer && transfer.to_account
-        transfer.to_account.increment!(:balance, amount) # Acreditar en la cuenta destino si existe la transferencia asociada
+      if description&.start_with?("Transferencia a")
+        account.decrement!(:balance, amount) # Solo debita si es salida
+      elsif description&.start_with?("Transferencia recibida de")
+        account.increment!(:balance, amount) # Solo acredita si es entrada
       end
     end
   end
-
-
-
 end

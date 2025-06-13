@@ -6,6 +6,7 @@ require 'sinatra/activerecord'
 require_relative 'models/user'
 require_relative 'models/account' 
 require_relative 'models/transaction' 
+require_relative 'models/transfer'
 
 
 class App < Sinatra::Application
@@ -28,7 +29,7 @@ class App < Sinatra::Application
 
   get '/' do
     settings.logger.info "Serving the root path"
-    'Welcome todo bien?'
+    erb :login
   end
 
   # Rutas para vistas
@@ -178,15 +179,25 @@ class App < Sinatra::Application
     end
 
     ActiveRecord::Base.transaction do
-      tx = Transaction.create!(
+      # Transacción de salida (origen)
+      tx_out = Transaction.create!(
         account_cvu: @account.cvu,
         amount: amount,
         date: Date.today,
         transaction_type: 'transfer',
         description: "Transferencia a #{destination_cvu}"
       )
+      # Transacción de entrada (destino)
+      tx_in = Transaction.create!(
+        account_cvu: dest_account.cvu,
+        amount: amount,
+        date: Date.today,
+        transaction_type: 'transfer',
+        description: "Transferencia recibida de #{@account.cvu}"
+      )
+      # Registro en Transfer
       Transfer.create!(
-        transaction_id: tx.transaction_id,
+        transaction_id: tx_out.transaction_id,
         from_cvu: @account.cvu,
         to_cvu: destination_cvu
       )
