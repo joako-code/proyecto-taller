@@ -4,7 +4,7 @@ require_relative '../../models/account'
 require_relative '../../models/user'
 
 RSpec.describe Transaction do
-  let(:user) { User.create!(dni: '12345678', first_name: 'Test', last_name: 'User', phone: '123', email: 'test@example.com', password: '1234') }
+  let(:user) { User.create!(dni: '12345678', first_name: 'Test', last_name: 'User', phone: '35816588564', email: 'test@example.com', password: '123456') }
   let(:account) { Account.create!(cvu: 'CVU123', dni: user.dni, balance: 100) }
 
   context 'validations' do
