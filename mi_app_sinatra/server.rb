@@ -75,7 +75,7 @@ class App < Sinatra::Application
       session[:dni] = user.dni
       redirect '/welcome'
     else
-      @error = 'Email o contraseña incorrectos'
+      @error = 'Wrong email or password'
       erb :login
     end
   end
@@ -117,11 +117,11 @@ class App < Sinatra::Application
         amount: amount,
         date: Date.today,
         transaction_type: 'deposit',
-        description: 'Depósito de saldo'
+        description: 'Deposit'
       )
       redirect '/dashboard'
     else
-      @error = "El monto debe ser mayor a 0"
+      @error = "Ammount must be greater than 0"
       erb :deposit
     end
   end
@@ -143,11 +143,11 @@ class App < Sinatra::Application
         amount: amount,
         date: Date.today,
         transaction_type: 'withdrawal',
-        description: 'Retiro de saldo'
+        description: 'Withdrawal'
       )
       redirect '/dashboard'
     else
-      @error = "Monto inválido o saldo insuficiente"
+      @error = "Invalid ammount or insufficient balance"
       erb :withdraw
     end
   end
@@ -167,22 +167,22 @@ class App < Sinatra::Application
     dest_account = Account.find_by(cvu: destination_cvu)
 
     if dest_account.nil?
-      @error = "Cuenta destino no encontrada"
+      @error = "Account with CVU #{destination_cvu} does not exist"
       return erb :transfer
     end
 
     if destination_cvu == @account.cvu
-      @error = "No puedes transferirte a tu propia cuenta"
+      @error = "You cannot transfer to your own account"
       return erb :transfer
     end
 
     if amount <= 0
-      @error = "El monto debe ser mayor a 0"
+      @error = "Ammount must be greater than 0"
       return erb :transfer
     end
 
     if amount > @account.balance
-      @error = "Saldo insuficiente"
+      @error = "Insufficient balance"
       return erb :transfer
     end
 
@@ -193,7 +193,7 @@ class App < Sinatra::Application
         amount: amount,
         date: Date.today,
         transaction_type: 'transfer',
-        description: "Transferencia a #{destination_cvu}"
+        description: "Transfer to #{destination_cvu}"
       )
       # Transacción de entrada (destino)
       tx_in = Transaction.create!(
@@ -201,7 +201,7 @@ class App < Sinatra::Application
         amount: amount,
         date: Date.today,
         transaction_type: 'transfer',
-        description: "Transferencia recibida de #{@account.cvu}"
+        description: "Transfer recived from #{@account.cvu}"
       )
       # Registro en Transfer
       Transfer.create!(
