@@ -1,3 +1,4 @@
+<!-- filepath: views/layout.erb -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,6 @@
   <script src="/js/main.js" defer></script>
 </head>
 <body>
-   <!-- CAMBIOS EN EL HEADER PARA AGREGAR UN SVG DE TREBOL VERDE Y UN TÍTULO -->
   <header class="main-header">
     <div class="logo-title">
       <!-- SVG de trébol verde -->
