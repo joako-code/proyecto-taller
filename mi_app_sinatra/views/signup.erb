@@ -1,22 +1,39 @@
-<h2>Sign Up</h2>
-<form action="/signup" method="post">
-  <label>Name:</label><br>
-  <input type="text" name="first_name" required><br>
+<section class="section">
+  <div class="form-card">
+    <h2 class="section-title">📝 Crear cuenta</h2>
 
-  <label>Last name:</label><br>
-  <input type="text" name="last_name" required><br>
+    <form action="/signup" method="post" class="form">
+      <div class="form-group">
+        <label for="first_name">Nombre</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Tu nombre" required />
+      </div>
 
-  <label>DNI:</label><br>
-  <input type="text" name="dni" required><br>
+      <div class="form-group">
+        <label for="last_name">Apellido</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Tu apellido" required />
+      </div>
 
-  <label>Phone:</label><br>
-  <input type="text" name="phone" required><br>
+      <div class="form-group">
+        <label for="dni">DNI</label>
+        <input type="text" id="dni" name="dni" placeholder="Número de documento" required />
+      </div>
 
-  <label>Email:</label><br>
-  <input type="email" name="email" required><br>
+      <div class="form-group">
+        <label for="phone">Teléfono</label>
+        <input type="text" id="phone" name="phone" placeholder="Número de teléfono" required />
+      </div>
 
-  <label>Password:</label><br>
-  <input type="password" name="password" required><br><br>
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
+      </div>
 
-  <button type="submit">Sing Up</button>
-</form>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="●●●●●●●●" required />
+      </div>
+
+      <button type="submit" class="primary-btn">Crear cuenta</button>
+    </form>
+  </div>
+</section>
