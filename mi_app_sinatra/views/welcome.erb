@@ -1,2 +1,27 @@
-<h2>¡Welcome, <%= @user.first_name %>!</h2>
-<p>You already signed up!</p>
+<section class="welcome-container" role="main" aria-label="Welcome and account summary">
+  <div class="welcome-card">
+    <h2>Welcome, <span class="highlight"><%= @user.first_name %></span>!</h2>
+    <p>You are successfully signed in to <strong>CloverWallet</strong>, your trusted virtual wallet.</p>
+
+    <div class="balance-info" aria-live="polite" aria-atomic="true">
+      <p>Your current balance:</p>
+      <p class="balance-amount" id="balance-amount">$<%= @account.balance %></p>
+    </div>
+
+    <div class="welcome-buttons">
+      <a href="/dashboard" class="btn" role="button" tabindex="0">Go to Dashboard</a>
+      <a href="/logout" class="btn btn-secondary" role="button" tabindex="0">Log Out</a>
+    </div>
+  </div>
+
+  <div class="welcome-illustration" aria-hidden="true">
+    <!-- SVG trébol animado -->
+    <svg class="clover-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <circle cx="20" cy="20" r="12" fill="var(--accent)"/>
+      <circle cx="44" cy="20" r="12" fill="var(--accent)"/>
+      <circle cx="20" cy="44" r="12" fill="var(--accent)"/>
+      <circle cx="44" cy="44" r="12" fill="var(--accent)"/>
+      <rect x="28" y="28" width="8" height="20" rx="4" fill="var(--accent)"/>
+    </svg>
+  </div>
+</section>

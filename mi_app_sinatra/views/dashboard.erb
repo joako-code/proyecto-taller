@@ -1,21 +1,32 @@
-<h2>My balance</h2>
-<p><strong>Current balance:</strong> $<%= @account.balance %></p>
-<p><strong>Your CVU:</strong> <%= @account.cvu %></p>
+<section class="dashboard-container">
+  <div class="balance-summary">
+    <h2>My balance</h2>
+    <p><strong>Current balance:</strong></p>
+    <p class="balance-amount">$<%= @account.balance %></p>
+    <p><strong>Your CVU:</strong> <span class="cvu"><%= @account.cvu %></span></p>
+  </div>
 
-<h3>Movements</h3>
-<table border="1" cellpadding="5">
-  <tr>
-    <th>Date</th>
-    <th>Type</th>
-    <th>Ammount</th>
-    <th>Description</th>
-  </tr>
-  <% @transactions.each do |tx| %>
-    <tr>
-      <td><%= tx.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-      <td><%= tx.transaction_type %></td>
-      <td>$<%= tx.amount %></td>
-      <td><%= tx.description %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="transactions-section">
+    <h3>Movements</h3>
+    <table class="transactions-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |tx| %>
+          <tr>
+            <td><%= tx.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= tx.transaction_type.capitalize %></td>
+            <td class="amount">$<%= tx.amount %></td>
+            <td><%= tx.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

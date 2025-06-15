@@ -1,0 +1,349 @@
+:root {
+  --bg: #2C303A;
+  --text: #DCBF9D;
+  --accent: #7C5D4C;
+  --gray1: #949490;
+  --gray2: #848494;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* HEADER */
+.main-header {
+  background-color: #222731;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.7);
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-title h1 {
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-shadow: 1px 1px 3px rgba(124, 93, 76, 0.7);
+}
+
+.main-header nav a {
+  margin-left: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.main-header nav a:hover {
+  color: var(--accent);
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: var(--accent);
+  margin: 0;
+}
+
+/* WELCOME PAGE */
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem 2rem;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.welcome-card {
+  background-color: #1F222B;
+  border: 2px solid var(--accent);
+  border-radius: 25px;
+  padding: 3rem 4rem;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  text-align: center;
+  color: var(--text);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: linear-gradient(120deg, transparent, rgba(124,93,76,0.2), transparent);
+  transform: rotate(25deg);
+  animation: shine 3s infinite;
+  pointer-events: none;
+  border-radius: 25px;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-150%) rotate(25deg); }
+  50% { transform: translateX(150%) rotate(25deg); }
+  100% { transform: translateX(-150%) rotate(25deg); }
+}
+
+.welcome-card h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.highlight {
+  color: var(--text);
+  text-shadow: 1px 1px 5px var(--gray2);
+}
+
+.welcome-card p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.balance-info p {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--gray1);
+  font-weight: 500;
+}
+
+.balance-amount {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-top: 0.2rem;
+  letter-spacing: 0.1em;
+}
+
+.welcome-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background-color: var(--accent);
+  color: var(--text);
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(124, 93, 76, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #633f31;
+  box-shadow: 0 6px 15px rgba(124, 93, 76, 0.9);
+  outline: none;
+}
+
+.btn-secondary {
+  background-color: var(--gray1);
+  color: var(--bg);
+  box-shadow: 0 5px 10px rgba(132, 132, 148, 0.6);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--gray2);
+  color: var(--text);
+  box-shadow: 0 6px 15px rgba(132, 132, 148, 0.9);
+  outline: none;
+}
+
+/* Clover SVG animación */
+
+.welcome-illustration {
+  max-width: 220px;
+  flex-shrink: 0;
+  animation: float 4s ease-in-out infinite;
+}
+
+.clover-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 5px var(--accent));
+  transition: filter 0.3s ease;
+}
+
+.clover-svg:hover {
+  filter: drop-shadow(0 0 15px var(--accent));
+  transform: scale(1.05);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .welcome-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .welcome-card {
+    max-width: 100%;
+    padding: 2rem 2.5rem;
+  }
+
+  .welcome-illustration {
+    max-width: 160px;
+  }
+}
+
+.dashboard-container {
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #1F222B; /* Igual que welcome card */
+  border: 2px solid var(--accent);
+  border-radius: 25px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
+  color: var(--text);
+  user-select: none;
+}
+
+.balance-summary {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.balance-summary h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.balance-summary p {
+  font-size: 1.3rem;
+  margin: 0.2rem 0;
+  font-weight: 600;
+}
+
+.balance-summary .balance-amount {
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-top: 0.1rem;
+}
+
+.balance-summary .cvu {
+  font-family: monospace;
+  font-weight: 700;
+  background-color: var(--gray1);
+  color: var(--bg);
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  user-select: text;
+}
+
+.transactions-section h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 1.1rem;
+}
+
+.transactions-table thead th {
+  text-align: left;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.transactions-table tbody tr {
+  background-color: #2C303A; /* un gris oscuro, diferente al fondo */
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.transactions-table tbody tr:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+  cursor: default;
+}
+
+.transactions-table tbody tr:hover .amount {
+  font-weight: 900;
+  color: var(--bg);
+}
+
+.transactions-table tbody td {
+  padding: 0.7rem 1rem;
+  vertical-align: middle;
+}
+
+.transactions-table tbody td.amount {
+  font-weight: 700;
+  color: var(--accent);
+  text-align: right;
+  letter-spacing: 0.05em;
+  user-select: text;
+}

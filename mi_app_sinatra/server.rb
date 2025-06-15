@@ -13,6 +13,7 @@ class App < Sinatra::Application
   enable :sessions # Habilita el uso de sesiones (ultimos cambios)
   set :session_secret, 'c1oV3rW4ll3t_s3ss10n_s3cr3t_2025_!@#_largo_para_seguridad_1234567890abcdef' # Cambia esto por algo seguro en producción
 
+  set :public_folder, File.expand_path('../public', __FILE__)
   set :views, File.expand_path('../views', __FILE__) #indico explicitamente a sintara donde estan las vistas
 
   configure :development do
@@ -89,6 +90,7 @@ class App < Sinatra::Application
   get '/welcome' do
     redirect '/login' unless session[:dni]
     @user = User.find_by(dni: session[:dni])
+    @account = Account.find_by(dni: @user.dni)
     erb :welcome
   end
 
