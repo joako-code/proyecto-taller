@@ -35,10 +35,14 @@ class App < Sinatra::Application
 
   # Rutas para vistas
   get '/signup' do
+    #Si el usuario ya inicio sesion, no podrá volver a la página de signup
+    redirect '/welcome' if session[:dni]
     erb :signup
   end
 
   get '/login' do
+    #Si el usuario ya inicio sesion, no podrá volver a la página de login
+    redirect '/welcome' if session[:dni]
     erb :login
   end
 
