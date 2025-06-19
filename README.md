@@ -12,29 +12,29 @@ Una aplicacion de billetera vitrtual la cual permite transacciones y depositos m
 ## 🛠️ Tecnologías utilizadas
 
 ### Backend y Frameworks
-    Ruby (3.4.3)
-    Sinatra (4.1)
-    ActiveRecord (ORM)
-    SQLite3 (base de datos)
-    bcrypt (hash de contraseñas) 
+- Ruby (3.4.3)
+- Sinatra (4.1)
+- ActiveRecord (ORM)
+- SQLite3 (base de datos)
+- bcrypt (hash de contraseñas) 
 ### Frontend
-    HTML5 (vistas ERB)
-    CSS3 (estilos personalizados)
-    JavaScript (animaciones y lógica visual)
-    SVG (logo y assets gráficos)
+- HTML5 (vistas ERB)
+- CSS3 (estilos personalizados)
+- JavaScript (animaciones y lógica visual)
+- SVG (logo y assets gráficos)
 ### Testing
-    RSpec
-    Rack-Test
-    DevOps y Herramientas
-    Docker
-    Rake (tareas de base de datos)
-    Bundler (gestión de gemas)
+- RSpec
+- Rack-Test
+- DevOps y Herramientas
+- Docker
+- Rake (tareas de base de datos)
+- Bundler (gestión de gemas)
 ### Otros
-    YAML (configuración de base de datos)
-    Puma (servidor web)
-    Rackup (servidor de desarrollo)
-    Figma
-    StarUML
+- YAML (configuración de base de datos)
+- Puma (servidor web)
+- Rackup (servidor de desarrollo)
+- Figma
+- StarUML
 
 ## 🔐 Seguridad
 - Hash de contraseñas
@@ -49,6 +49,8 @@ Una aplicacion de billetera vitrtual la cual permite transacciones y depositos m
 ## 🐳Paso a paso para ejecutar CloverWallet usando Docker🐳
 Cloná el repositorio:
 git clone https://github.com/tu-usuario/cloverwallet.git
+
+Ingresa a la carpeta:
 cd cloverwallet
 
 Levantá la app con Docker Compose:
